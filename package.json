@@ -1,11 +1,13 @@
 {
   "name": "sketchmark",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "An experiment in creating a 'view library' for building dynamic content",
-  "main": "index.js",
+  "main": "dist/sketchmark.js",
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --env production=true",
+    "build:dev": "webpack",
+    "test": "jest",
+    "start": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -19,10 +21,16 @@
   "homepage": "https://github.com/beyondthesketch/sketchmark#readme",
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-object-assign": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
+    "jest": "^26.6.2",
     "webpack": "^5.3.0",
-    "webpack-cli": "^4.1.0"
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "statefulobjects": "^1.0.1-alpha.2"
   }
 }
