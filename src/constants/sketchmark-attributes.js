@@ -1,0 +1,3 @@
+const SKETCHMARK_ATTRIBUTE_PREFIX = 'data-sm';
+
+export default SKETCHMARK_ATTRIBUTE_PREFIX;
