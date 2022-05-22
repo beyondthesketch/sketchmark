@@ -3,9 +3,10 @@ import SKETCHMARK_REGISTRY from './../constants/registry';
 import statefulObject from 'statefulobjects';
 import SKETCHMARK_ATTRIBUTE_PREFIX from '../constants/sketchmark-attributes';
 
-export default function createModel(source, nodes) {
+export default function createModel(source, lifecycles, nodes) {
     const model = {
         source,
+        ...lifecycles,
     };
 
     const appProps = [];

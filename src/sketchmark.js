@@ -19,28 +19,71 @@ function handleUpdates(msg) {
         }
     );
 
-    renderUpdates(updates, this.template);
+    if (updates && updates.length) {
+        // **> preUpdate
+        this.preUpdate();
+        // **> preRender
+        this.preRender();
+        renderUpdates(updates, this.template);
+        // **> postUpdate;
+        this.postUpdate();
+        // **> postRender
+        this.postRender();
+    }
 
     return updates;
 }
 
-
+// @TODO: Wrap this in function? so that attempts to reinit existing views does not return anything and does not register a var/const/let
 export default class Sketchmark {
-    #model;
     #sketchmarkModel;
-    constructor(source) {
+    constructor(source, config = {}) {
         if (SKETCHMARK_REGISTRY[source]) {
             console && console.warn(`'${source}' view already initialised! To reinitialise this view, you must first quit the current view`);
-            return;
+            console && console.warn(`...this instance will be an alias for'${source}'`);
+            return SKETCHMARK_REGISTRY[source];
         }
 
+        const {
+            preInit = () => void 0,
+            postInit = () => void 0,
+            preQuit = () => void 0,
+            postQuit = () => void 0,
+            preUpdate = () => void 0,
+            postUpdate = () => void 0,
+            preRender = () => void 0,
+            postRender = () => void 0,
+        } = config;
+
+        const lifecycles = {
+            preUpdate,
+            postUpdate,
+            preRender,
+            postRender,
+        }
+
+        // **> preInit
+        preInit();
+        
+        // ==> initialise
         const model = fetchTemplate(source);
-        const sketchmarkModel = createModel(source, model[source], model.repeats);
+        const sketchmarkModel = createModel(source, lifecycles, model[source], model.repeats);
         this.#model = model;
         this.#sketchmarkModel = sketchmarkModel;
+
+        // **> postInit
+        postInit();
+
+        // instance methods
         this.quit = () => {
+            // **> preQuit
+            preQuit();
+
             // QUESTION: Move this to the same module as create-model or another module?
             delete SKETCHMARK_REGISTRY[source];
+            
+            // **> postQuit
+            postQuit();
         };
 
         const state = SKETCHMARK_REGISTRY[source];
