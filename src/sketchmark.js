@@ -36,6 +36,7 @@ function handleUpdates(msg) {
 
 // @TODO: Wrap this in function? so that attempts to reinit existing views does not return anything and does not register a var/const/let
 export default class Sketchmark {
+    #model;
     #sketchmarkModel;
     constructor(source, config = {}) {
         if (SKETCHMARK_REGISTRY[source]) {
