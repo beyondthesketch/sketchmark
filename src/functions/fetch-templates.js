@@ -24,10 +24,12 @@ export default function fetchTemplate(source) {
                                         if (!element.hasAttribute('data-rp')) {
                                             refCache = id;
                                         }
-                                        
-                                        element.dataset.smRef = element.hasAttribute('data-rp') && refCache
-                                            ? refCache
-                                            : id; // add id refs to the markup/template on the DOM
+
+                                        if (!element.dataset.smRef) {
+                                            element.dataset.smRef = element.hasAttribute('data-rp') && refCache
+                                                ? refCache
+                                                : id; // add id refs to the markup/template on the DOM
+                                        }
                                     }
                                 )
                         }
