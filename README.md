@@ -199,3 +199,18 @@ The `content` directive deals with strings and will coerce all supplied values t
 </script>
 ```
 ![Updated repeated HTML rendered on a browser](public/images/sketchmark-list-updated.png)
+
+
+# Directives
+
+## Content
+
+`data-sm-content` deals with strings and will coerce all supplied values to strings, but if any property used with it is supplied an array, the element will be repeated for each element in the array with it's value set as the text content.
+
+## Show
+
+`data-sm-show` takes a boolean value which determines the inline style attribute value of `display`. A `false` value sets the style rule to `none` while a `true` value removes the inline style allowing the default or other style rules to be applied.
+
+## Attr
+
+`data-sm-attr` takes a string value in the format `attribute:id` where `attribute` represents the HTML attribute to control and the `id` serves to target the specific element or elements.

@@ -1,5 +1,5 @@
 {
-  "name": "sketchmark",
+  "name": "@beyondthesketch/sketchmark",
   "version": "1.0.0-alpha",
   "description": "An experiment in creating a 'view library' for building dynamic content",
   "main": "dist/sketchmark.js",
@@ -20,15 +20,15 @@
   },
   "homepage": "https://github.com/beyondthesketch/sketchmark#readme",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-transform-object-assign": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^8.1.0",
-    "jest": "^26.6.2",
-    "webpack": "^5.3.0",
-    "webpack-cli": "^4.1.0",
-    "webpack-dev-server": "^3.11.0"
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-transform-object-assign": "^7.16.7",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "jest": "^26.6.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^3.11.3"
   },
   "dependencies": {
     "statefulobjects": "^1.0.1-alpha.2"

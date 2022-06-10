@@ -3,9 +3,22 @@ import SKETCHMARK_REGISTRY from './../constants/registry';
 import statefulObject from 'statefulobjects';
 import SKETCHMARK_ATTRIBUTE_PREFIX from '../constants/sketchmark-attributes';
 
-export default function createModel(source, nodes) {
+function directiveSwitch(element, directive) {
+    switch (directive) {
+        case 'attr':
+            const [attr] = element.dataset.smAttr.split(':');
+            return element.getAttribute(attr);
+        case 'show':
+            return !(element.style.display === 'none' || window.getComputedStyle(element).display === 'none');
+        default:
+            return element.textContent;
+    }
+}
+
+export default function createModel(source, lifecycles, nodes) {
     const model = {
         source,
+        ...lifecycles,
     };
 
     const appProps = [];
@@ -20,16 +33,12 @@ export default function createModel(source, nodes) {
 
                         model[ref][d] = [
                             element.getAttribute(`${SKETCHMARK_ATTRIBUTE_PREFIX}-${d}`),
-                            d === 'show'
-                                ? !(element.style.display === 'none' || window.getComputedStyle(element).display === 'none')
-                                : element.textContent
+                            directiveSwitch(element, d),
                         ];
 
                         const foo = [
                             element.getAttribute(`${SKETCHMARK_ATTRIBUTE_PREFIX}-${d}`),
-                            d === 'show'
-                                ? !(element.style.display === 'none' || window.getComputedStyle(element).display === 'none')
-                                : element.textContent
+                            directiveSwitch(element, d)
                         ];
                         if (!appProps.find( (el) => foo.toString() === el.toString())) {
                             appProps.push(foo);

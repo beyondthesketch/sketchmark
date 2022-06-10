@@ -2,9 +2,14 @@ import SKETCHMARK_ATTRIBUTE_PREFIX from './../constants/sketchmark-attributes';
 
 export default function renderUpdates(updates = [], template) {
     updates.length && updates.forEach(
-        ([id, type, , val]) => {
+        ([id, type, key, val]) => {
             const el = document.querySelector(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`);
+
+            // attributes
             switch (type) {
+                case 'attr':
+                    !!val ? el.setAttribute(key.substring(0, key.indexOf(':')), val) : el.removeAttribute(key.substring(0, key.indexOf(':')));
+                    break;
                 case 'show':
                     !!val ? el.style.display && (el.style.display = '') : el.style.display = 'none';
                     break;
