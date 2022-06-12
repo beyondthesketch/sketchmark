@@ -1,8 +1,8 @@
 {
   "name": "@beyondthesketch/sketchmark",
-  "version": "1.0.0-alpha",
+  "version": "0.0.0-alpha",
   "description": "An experiment in creating a 'view library' for building dynamic content",
-  "main": "dist/sketchmark.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --env production=true",
     "build:dev": "webpack",
@@ -32,5 +32,14 @@
   },
   "dependencies": {
     "statefulobjects": "^1.0.1-alpha.2"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "dist/"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
