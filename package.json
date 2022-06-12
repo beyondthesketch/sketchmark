@@ -1,6 +1,6 @@
 {
   "name": "@beyondthesketch/sketchmark",
-  "version": "1.0.0-alpha",
+  "version": "0.0.0-alpha",
   "description": "An experiment in creating a 'view library' for building dynamic content",
   "main": "dist/sketchmark.js",
   "scripts": {
