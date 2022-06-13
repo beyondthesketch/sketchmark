@@ -25,10 +25,10 @@ function handleUpdates(msg) {
         // **> preRender
         this.preRender();
         renderUpdates(updates, this.template);
-        // **> postUpdate;
-        this.postUpdate();
         // **> postRender
         this.postRender();
+        // **> postUpdate;
+        this.postUpdate();
     }
 
     return updates;
