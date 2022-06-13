@@ -214,3 +214,76 @@ The `content` directive deals with strings and will coerce all supplied values t
 ## Attr
 
 `data-sm-attr` takes a string value in the format `attribute:id` where `attribute` represents the HTML attribute to control and the `id` serves to target the specific element or elements.
+
+
+# API
+
+## Syntax
+
+### `new SketchMark()`
+
+Returns a new `SketchMark` instance.
+
+#### Parameters
+
+##### `id`
+
+`string` id of the SketchMark view to instantiate.
+
+##### `options` (optional)
+
+Configuration `object` for the SketchMark view.
+
+#### Methods
+
+##### `quit()`
+
+Deletes the SketchMark instance and removes it from the SketchMark registry.
+
+# Lifecycle Hooks
+
+SketchMark views go through a series of events from their creation to their quiting as well as during their use. Views can be configured with functions to run during each one of these events via _lifecycle hooks_.
+
+## preInit
+
+Called once before initialisation and instantiation of the SketchMark view.
+
+Use to perform one-time setup or prepation tasks.
+
+## postInit
+
+Called once, immediately after the SketchMark view is created.
+
+Use to perform any one-time operations when it is required that the view be instantiated and active before hand.
+
+## preUpdate
+
+Called everytime the SketchMark instance is about to update, before the `preRender` hook.
+
+Good for performing side effects required prior to the instance receiving or attempting to apply any updates.
+
+## postUpdate
+
+Called each time after the SketchMark instance has updated, after the view has re-rendered and the `postRender` hook has run.
+
+Good for performing side effects required after the instance receives and applies any updates.
+
+## preRender
+
+Called immediately before any re-render of the SketchMark instance, after the `preUpdate` hook is called.
+
+Use to perform any prep work or side effects needed before DOM updates.
+
+## postRender
+
+Called immediately after any re-render of the SketchMark instance but before the `postUpdate` hook is called.
+
+## preQuit
+
+Called once, immediately after the `quit()` method is called on the instance, and before any quit processes begin.
+
+Use for clean up tasks.
+
+## postQuit
+
+Called once, immediately after the instance has been quit.
