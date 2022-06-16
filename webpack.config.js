@@ -9,7 +9,8 @@ module.exports = (env) => ({
         filename: 'sketchmark.js',
         library: 'SketchMark',
         libraryTarget: 'umd',
-        libraryExport: 'default'
+        libraryExport: 'default',
+        clean: true
     },
     module: {
         rules: [
