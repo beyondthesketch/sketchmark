@@ -41,6 +41,13 @@
     "dist/"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ]
   }
 }
