@@ -1,7 +1,10 @@
-import DIRECTIVES from '../constants/directives';
+import {DIRECTIVES} from '../constants/directives';
 import SKETCHMARK_ATTRIBUTE_PREFIX from './../constants/sketchmark-attributes';
 
 export default function fetchTemplate(source) {
+
+    // console.log('fetch template', this);
+
     const frags = document.createDocumentFragment();
     const model = {
         [source]: []

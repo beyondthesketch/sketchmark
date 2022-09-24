@@ -1,19 +1,23 @@
+import { DIRECTIVE_NAMES, DIRECTIVE_SEPARATORS } from './../constants/directives';
 import SKETCHMARK_ATTRIBUTE_PREFIX from './../constants/sketchmark-attributes';
 
 export default function renderUpdates(updates = [], template) {
     updates.length && updates.forEach(
         ([id, type, key, val]) => {
+
+            // console.log(id, template);
+
             const el = document.querySelector(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`);
 
             // attributes
             switch (type) {
-                case 'attr':
-                    !!val ? el.setAttribute(key.substring(0, key.indexOf(':')), val) : el.removeAttribute(key.substring(0, key.indexOf(':')));
+                case DIRECTIVE_NAMES.ATTR:
+                    !!val ? el.setAttribute(key.substring(0, key.indexOf(DIRECTIVE_SEPARATORS.ATTR)), val) : el.removeAttribute(key.substring(0, key.indexOf(DIRECTIVE_SEPARATORS.ATTR)));
                     break;
-                case 'show':
+                case DIRECTIVE_NAMES.SHOW:
                     !!val ? el.style.display && (el.style.display = '') : el.style.display = 'none';
                     break;
-                case 'content':
+                case DIRECTIVE_NAMES.CONTENT:
                     // delete duplicate ids
                     el.parentElement
                         .querySelectorAll(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`)
