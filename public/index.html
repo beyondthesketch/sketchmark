@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SketchMark</title>
+    <style>
+        .g {
+            color: green;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SketchMark</h1>
+        <p>A library that behaves like a view library for website content</p>
+    </header>
+    <main>
+        <div data-sm-source="app">
+            <h1 data-sm-content="title">Foo bar</h1>
+            <p data-sm-content="description">Lorem ipsum dolor sit amet.</p>
+            <p data-sm-attr="class_statustext">Status</p>
+            <p data-sm-attr="style_textstyle">This should be black</p>
+            <p data-sm-attr="title_tooltip" data-sm-content="tooltip">This doesn't have a tooltip</p>
+        </div>
+    </main>
+    <footer>
+        <small>&copy; 2020 - 2022 Beyond The Sketch Ltd</small>
+    </footer>
+</body>
+<script src="sketchmark.js"></script>
+<script>
+    const app = new SketchMark('app', {preUpdate: async () => console.log('update')});
+    app.addEventListener('update', ({ detail}) => console.log('update event', detail));
+
+    // app.addEventListener('update', (event) => console.log(event));
+
+    app.title = 'Widget Doodads';
+
+    app.description = 'one...';
+
+    app.description = '...and another...';
+
+    app.description = [
+        '...and another',
+        '...and some more',
+        '...and more still...'
+    ];
+
+    app.class_statustext = 'g';
+
+    app.style_textstyle = 'color: red';
+
+    app.title_tooltip = 'La dee da';
+
+    app.tooltip = 'This should have a tooltip';
+</script>
+</html>
