@@ -1,6 +1,6 @@
 import {DIRECTIVES, DIRECTIVE_NAMES, DIRECTIVE_SEPARATORS} from './../constants/directives';
 import SKETCHMARK_REGISTRY from './../constants/registry';
-import statefulObject from 'statefulobjects';
+import { statefulObject } from './statefulObjectAsProxy';
 import SKETCHMARK_ATTRIBUTE_PREFIX from '../constants/sketchmark-attributes';
 
 function directiveSwitch(element, directive) {
