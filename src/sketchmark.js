@@ -125,9 +125,9 @@ export default class Sketchmark extends EventTarget {
 
         for (const i in state) {
             if (state.hasOwnProperty(i)) {
-                state.subscribe[i](i, () => {
+                state.subscribe = [i, () => {
                     updateModel(this.#sketchmarkModel);
-                });
+                }]
                 // create a public proxy to the stateful object
                 Object.defineProperty(
                     this,
