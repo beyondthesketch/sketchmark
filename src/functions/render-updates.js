@@ -1,13 +1,20 @@
 import { DIRECTIVE_NAMES, DIRECTIVE_SEPARATORS } from './../constants/directives';
 import SKETCHMARK_ATTRIBUTE_PREFIX from './../constants/sketchmark-attributes';
 
+const refs = new Map();
+
 export default function renderUpdates(updates = [], template) {
     updates.length && updates.forEach(
         ([id, type, key, val]) => {
 
             // console.log(id, template);
 
-            const el = document.querySelector(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`);
+            const el = refs.has(id) ? refs.get(id) : (
+                refs.set(id, document.querySelector(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`)) &&
+                refs.get(id)
+            );
+
+            console.log(refs);
 
             // attributes
             switch (type) {
