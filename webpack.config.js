@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = (env) => ({
     mode: env && env.production ? 'production' : 'development',
@@ -38,5 +39,10 @@ module.exports = (env) => ({
         devMiddleware: {
             publicPath: '/dist'
         }
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            PROD: env && env.production ? true : false
+        })
+    ]
 });
