@@ -14,9 +14,11 @@ export default function diffModel(model, state) {
 
             keys.forEach(
                 (k) => {
+                    const dirIsArray = Array.isArray(dir[k][1]);
+
                     if (
-                        (Array.isArray(dir[k][1]) && ('' + dir[k][1] !== '' + state[dir[k][0]]))
-                        || dir[k][1] !== state[dir[k][0]]   // right one for text
+                        (dirIsArray && ('' + [...dir[k][1]].reverse() !== '' + state[dir[k][0]]))
+                        || (!dirIsArray && (dir[k][1] !== state[dir[k][0]])) // right one for text
                     ) {
                         update.push([id, k, dir[k][0], state[dir[k][0]]]);
                     }
