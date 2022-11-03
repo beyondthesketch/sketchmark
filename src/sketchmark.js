@@ -44,7 +44,7 @@ function handleUpdates(msg, app) {
         appUpdating(true);
 
         // **> preUpdate
-        console.log(this.preUpdate.constructor.name);
+        !PROD && console?.log(this.preUpdate.constructor.name);
         this.preUpdate();
         // **> preRender
         this.preRender();
@@ -70,8 +70,8 @@ export default class Sketchmark extends EventTarget {
     constructor(source, config = {}) {
         super();
         if (SKETCHMARK_REGISTRY[source]) {
-            console && console.warn(`'${source}' view already initialised! To reinitialise this view, you must first quit the current view`);
-            console && console.warn(`...this instance will be an alias for'${source}'`);
+            !PROD && console?.warn(`'${source}' view already initialised! To reinitialise this view, you must first quit the current view`);
+            !PROD && console?.warn(`...this instance will be an alias for'${source}'`);
             return SKETCHMARK_REGISTRY[source];
         }
 

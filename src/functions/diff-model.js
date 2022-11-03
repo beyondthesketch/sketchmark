@@ -28,7 +28,7 @@ export default function diffModel(model, state) {
         }
     )
 
-    console && console.log(update.length > 0 ? 'Updates needed' : 'No Updates', update);
+    !PROD && console?.log(update.length > 0 ? 'Updates needed' : 'No Updates', update);
     
     return update;
 }

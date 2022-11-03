@@ -6,15 +6,12 @@ const refs = new Map();
 export default function renderUpdates(updates = [], template) {
     updates.length && updates.forEach(
         ([id, type, key, val]) => {
-
-            // console.log(id, template);
-
             const el = refs.has(id) ? refs.get(id) : (
                 refs.set(id, document.querySelector(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-ref="${id}"]`)) &&
                 refs.get(id)
             );
 
-            console.log(refs);
+            !PROD && console?.log(refs);
 
             // attributes
             switch (type) {
