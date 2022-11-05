@@ -22,7 +22,7 @@
             <h1 data-sm-content="title">Foo bar</h1>
             <p data-sm-content="description">Lorem ipsum dolor sit amet.</p>
             <p data-sm-attr="class_statustext">Status</p>
-            <p data-sm-attr="style_textstyle">This should be black</p>
+            <p data-sm-attr="style_textstyle" data-sm-event="click_loremIpsum">This should be black</p>
             <p data-sm-attr="title_tooltip" data-sm-content="tooltip">This doesn't have a tooltip</p>
         </div>
     </main>
@@ -32,8 +32,18 @@
 </body>
 <script src="sketchmark.js"></script>
 <script>
-    const app = new SketchMark('app', {preUpdate: async () => console.log('update')});
-    app.addEventListener('update', ({ detail}) => console.log('update event', detail));
+    const app = new SketchMark(
+        'app',
+        {
+            methods: {
+                loremIpsum() {
+                    console.log('lorem ipsum');
+                }
+            },
+            preUpdate: async () => console.log('pre update')
+        }
+    );
+    // app.addEventListener('update', ({ detail}) => console.log('update event', detail));
 
     // app.addEventListener('update', (event) => console.log(event));
 

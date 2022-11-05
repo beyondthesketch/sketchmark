@@ -66,6 +66,7 @@ function handleUpdates(msg, app) {
 export default class Sketchmark extends EventTarget {
     #root;
     #sketchmarkModel;
+    #methods;
 
     constructor(source, config = {}) {
         super();
@@ -97,8 +98,11 @@ export default class Sketchmark extends EventTarget {
         preInit();
         
         // ==> initialise
-        const model = fetchTemplate.call(this, source);
+        const model = fetchTemplate.call(this, source, config.methods);
         this.nodes = model;
+
+        // apply event handlers - DEV ONLY?
+        this.#methods = { ...config.methods };
 
         const sketchmarkModel = createModel(source, lifecycles, model[source], model.repeats);
 
@@ -156,6 +160,11 @@ export default class Sketchmark extends EventTarget {
 
     get _model() {
         return this.#sketchmarkModel;
+    }
+
+    // DEV ONLY?
+    get _methods() {
+        return this.#methods;
     }
 
     set _model(x) {
