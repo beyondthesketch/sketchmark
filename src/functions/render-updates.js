@@ -11,7 +11,7 @@ export default function renderUpdates(updates = [], template) {
                 refs.get(id)
             );
 
-            !PROD && console?.log(refs);
+            !PROD && console?.log('SketchMark >>> rendering; DOM refs:', refs);
 
             // attributes
             switch (type) {

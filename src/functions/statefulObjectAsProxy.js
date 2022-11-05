@@ -4,8 +4,6 @@ export function statefulObject(model) {
         (key) => callbacksModel[key] = [],
     );
 
-    !PROD && console?.log('callbacksModel', callbacksModel);
-
     return new Proxy(
         model,
         {
@@ -39,11 +37,10 @@ export function statefulObject(model) {
 
                 obj[prop] = value;
 
-                !PROD && console?.log('prop', prop);
-                !PROD && console?.log(prop, value, callbacksModel[prop]);
                 if (
                     !['subscribe', 'unsubscribe'].includes(prop)
                 ) {
+                    !PROD && console?.log(`set property '${prop}' with: `, value);
                     callbacksModel[prop].length && callbacksModel[prop].forEach(
                         (fn) => fn()
                     );
