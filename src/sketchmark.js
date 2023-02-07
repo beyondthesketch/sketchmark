@@ -14,10 +14,13 @@ function setAppUpdating(status) {
     );
 }
 
+// TODO: extract and test
 function handleUpdates(msg, app) {
+    const { data: [ source, updates] } = msg;
+    if (source !== app.source) {
+        return;
+    }
     const appUpdating = setAppUpdating.bind(app);
-    const { data } = msg;
-    const updates = data;
 
     updates && updates.length && updates.forEach(
         (item) => {
@@ -62,8 +65,12 @@ function handleUpdates(msg, app) {
     return updates;
 }
 
+// DEV ONLY
+window.__SKETCHMARK_REGISTRY__ = SKETCHMARK_REGISTRY;
+
 // @TODO: Wrap this in function? so that attempts to reinit existing views does not return anything and does not register a var/const/let
 export default class Sketchmark extends EventTarget {
+    #source;
     #root;
     #sketchmarkModel;
     #methods;
@@ -75,6 +82,8 @@ export default class Sketchmark extends EventTarget {
             !PROD && console?.warn(`...this instance will be an alias for'${source}'`);
             return SKETCHMARK_REGISTRY[source];
         }
+
+        this.#source = source;
 
         const {
             preInit = () => void 0,
@@ -156,6 +165,10 @@ export default class Sketchmark extends EventTarget {
 
     get roots() {
         return this.#root;
+    }
+
+    get source() {
+        return this.#source;
     }
 
     get _model() {

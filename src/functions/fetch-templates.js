@@ -1,7 +1,9 @@
 import {DIRECTIVES, DIRECTIVE_SEPARATORS, META_DIRECTIVES} from '../constants/directives';
 import SKETCHMARK_ATTRIBUTE_PREFIX from './../constants/sketchmark-attributes';
 
-function refDomNode(element, refCache) {
+let refCache;
+
+function refDomNode(element) {
     const id = crypto.getRandomValues(new Uint32Array(1))[0];
     if (!element.hasAttribute('data-rp')) {
         refCache = id;
@@ -31,7 +33,6 @@ export default function fetchTemplate(source, methods) {
     markup
         .forEach(
             (elm) => {
-                let refCache;
                 // ref the markup for basic directives
                 DIRECTIVES
                     .forEach(
@@ -56,8 +57,9 @@ export default function fetchTemplate(source, methods) {
 
                 const template = elm.cloneNode(true);
 
-                // remove subviews
-                template.querySelectorAll(`[${SKETCHMARK_ATTRIBUTE_PREFIX}-source]`)
+                // remove subviews & repeats
+                template.querySelectorAll(
+                    `[${SKETCHMARK_ATTRIBUTE_PREFIX}-source], [data-rp]`)
                     .forEach(
                         (el) => el.parentElement.removeChild(el)
                     );

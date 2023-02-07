@@ -36,6 +36,7 @@ export default function renderUpdates(updates = [], template) {
                                 if (i !== (val.length - 1)) {
                                     const cloneEl = el.cloneNode(true);
                                     cloneEl.textContent = v;
+                                    cloneEl.dataset.rp = '';
                                     el.insertAdjacentElement(
                                         'afterend',
                                         cloneEl

@@ -200,6 +200,24 @@ The `content` directive deals with strings and will coerce all supplied values t
 ```
 ![Updated repeated HTML rendered on a browser](public/images/sketchmark-list-updated.png)
 
+When writing out a 'template' which contains blocks which are present due to repeating content, each element must contain the content directive, but all but one of them need to add `data-rp` attribute. This tells SketchMark that the element is one of a repeated block. The one that does not have this attribute will be used as the template for re-renders.
+
+```html
+<!-- your-page.html -->
+<div
+    data-sm-source="list-app"
+>
+    <ul>
+        <!-- the actual 'template' to use -->
+        <li data-sm-content="items">Widgets</li>
+
+        <!-- repeated content of initial render -->
+        <!-- whill be ignored while reading template -->
+        <li data-sm-content="items" data-rp>Doodads</li>
+        <li data-sm-content="items" data-rp>Gadgets</li>
+    </ul>
+</div>
+```
 
 # Directives
 

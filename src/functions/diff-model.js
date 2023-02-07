@@ -30,5 +30,5 @@ export default function diffModel(model, state) {
 
     !PROD && console?.log('SketchMark >>>', update.length > 0 ? 'Updates needed' : 'No Updates', update);
     
-    return update;
+    return [model.source, update];
 }
